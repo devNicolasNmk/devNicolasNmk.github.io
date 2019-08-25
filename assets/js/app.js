@@ -21,7 +21,7 @@ var tabEre = {
     };
 var nbEres = 0;
 var bgEre = document.getElementById("bgEre");
-var nbConstruction = 0;
+// var nbConstruction = 0;
 
 // incrementation du nombre de batiments construits et catastrophes rencontrées
 // en attente d'implementation
@@ -29,18 +29,62 @@ var nbConstruction = 0;
 var viderCache = document.getElementById('viderCache');
 
 // ----------------------- Debut : Statistiques - options ----------------------- //
+class Statistiques{
+    constructor(){
+        this.totalClick = document.getElementById('nbTotalClic');
+        this.scoreClick = 0;
+        this.ressourcesCumulees = document.getElementById('nbTotalRessources');
+        this.somme = 0;
+        this.nbTotalOutils = document.getElementById('nbTotalOutils');
+        this.totalOutils = 0;
+        this.nbTotalBatiment;
+        this.construction= 0;
+        this.tabEre;
+        this.nbEres;
+        this.bgEre;
+    }
 
+    incrTotalClick(){
+       return this.scoreClick++;
+    }
+
+    majTotalClik(){
+        totalClick.innerHTML = this.scoreClick;
+    }
+
+    incrConstruction() {
+        this.construction++;
+    }
+
+    incrRessourcesCumulees(clickRessource) {
+        this.somme++;
+        if (clickRessource > 1) {
+           return nbTotalRessources.innerHTML = parseInt(nbTotalRessources.innerHTML) + clickRessource;
+
+        } else {
+            return nbTotalRessources.innerHTML = this.somme;
+        }
+    }
+    incrNbOutils(){
+        return this.totalOutils++;
+    }
+    majNbOutils(){
+        return nbTotalOutils.innerHTML = this.totalOutils;
+    }
+}
+var statistiques = new Statistiques
+console.log(statistiques);
 //---- Stat total click ----//
 /**
  * 
  * Fonction incremenation de total des clicks + maj de l'affichage
  * 
  */
-function incrTotalClick() {
-    scoreClick++;
-    totalClick.innerHTML = scoreClick;
-}
-getClick.onclick = incrTotalClick;
+// function incrTotalClick() {
+//     scoreClick++;
+//     totalClick.innerHTML = scoreClick;
+// }
+// getClick.onclick = incrTotalClick;
 
 
 // ---- eres terminées ---- //
@@ -459,7 +503,8 @@ function clicker(plateau) {
             //alors tu incrémente le score de la div qui comptien la class os
             i = i + 1;
             //incrementation du total des clics
-            incrTotalClick();
+            statistiques.incrTotalClick();
+            statistiques.majTotalClik();
             // si la div arrive a un score de 10
             if (i == 4) {
                 //tu remet le score a 0
@@ -469,13 +514,14 @@ function clicker(plateau) {
                 //tu incrémente aussi le compteur du déclancheur du changement de place des ressources
                 declencheurRessource1++;
                 //gestion de l'incrementation des ressources cumulées
-                somme++;
-                if (clickRessource1 > 1) {
-                    nbTotalRessources.innerHTML = parseInt(nbTotalRessources.innerHTML) + clickRessource1;
+                // somme++;
+                // if (clickRessource1 > 1) {
+                //     nbTotalRessources.innerHTML = parseInt(nbTotalRessources.innerHTML) + clickRessource1;
 
-                } else {
-                    nbTotalRessources.innerHTML = somme;
-                }
+                // } else {
+                //     nbTotalRessources.innerHTML = somme;
+                // }
+                statistiques.incrRessourcesCumulees(clickRessource1);
 
                 //a chaque fois que le compteur du déclencheur atteindra 20, ça appelera le changement des places des ressources
                 if (declencheurRessource1 == 10) {
@@ -497,7 +543,8 @@ function clicker(plateau) {
             //alors tu incrémente le score de la div qui comptien la class bois
             j = j + 1;
             //incrementation du total des clics
-            incrTotalClick();
+              statistiques.incrTotalClick();
+              statistiques.majTotalClik();
             // si la div arrive a un score de 4
             if (j == 3) {
                 //tu remet le score a 0
@@ -507,13 +554,14 @@ function clicker(plateau) {
                 //tu incrémente aussi le compteur du déclancheur du changement de place des ressources
                 declencheurRessource2++;
                 //gestion de l'incrementation des ressources cumulées
-                somme++;
-                if (clickRessource1 > 1) {
-                    nbTotalRessources.innerHTML = parseInt(nbTotalRessources.innerHTML) + clickRessource2;
+                // somme++;
+                // if (clickRessource1 > 1) {
+                //     nbTotalRessources.innerHTML = parseInt(nbTotalRessources.innerHTML) + clickRessource2;
 
-                } else {
-                    nbTotalRessources.innerHTML = somme;
-                }
+                // } else {
+                //     nbTotalRessources.innerHTML = somme;
+                // }
+                statistiques.incrRessourcesCumulees(clickRessource2);
 
                 //a chaque fois que le compteur du déclencheur atteindra 20, ça appelera le changement des places des ressources
                 if (declencheurRessource2 == 6) {
@@ -534,7 +582,8 @@ function clicker(plateau) {
             //alors tu incrémente le score de la div qui comptien la class pierre
             k = k + 1;
             //incrementation du total des clics
-            incrTotalClick();
+              statistiques.incrTotalClick();
+              statistiques.majTotalClik();
             // si la div arrive a un score de 7
             if (k == 4) {
                 //tu remet le score a 0
@@ -544,13 +593,14 @@ function clicker(plateau) {
                 //tu incrémente aussi le compteur du déclancheur du changement de place des ressources
                 declencheurRessource3++;
                 //gestion de l'incrementation des ressources cumulées avec coef multiplicateur lié aux items du shop
-                somme++;
-                if (clickRessource1 > 1) {
-                    nbTotalRessources.innerHTML = parseInt(nbTotalRessources.innerHTML) + clickRessource3;
+                // somme++;
+                // if (clickRessource1 > 1) {
+                //     nbTotalRessources.innerHTML = parseInt(nbTotalRessources.innerHTML) + clickRessource3;
 
-                } else {
-                    nbTotalRessources.innerHTML = somme;
-                }
+                // } else {
+                //     nbTotalRessources.innerHTML = somme;
+                // }
+                statistiques.incrRessourcesCumulees(clickRessource3);
 
                 //a chaque fois que le compteur du déclencheur atteindra 20, ça appelera le changement des places des ressources
                 if (declencheurRessource3 == 8) {
